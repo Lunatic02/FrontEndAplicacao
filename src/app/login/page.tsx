@@ -18,10 +18,9 @@ export default function Page() {
     .then(response => response.json())
     .then(data => {
         if (data.token) {
-            // Login bem-sucedido, armazene o token no localStorage
+            localStorage.setItem('email', email)
             localStorage.setItem('token', data.token);
-            alert('Login bem-sucedido!');
-            // Redirecione ou faça outra ação após o login
+            window.location.href = '/';
         } else {
             alert('Falha no login. Verifique suas credenciais.');
         }
