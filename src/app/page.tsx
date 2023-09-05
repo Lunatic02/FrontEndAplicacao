@@ -75,9 +75,11 @@ export default function Home() {
           </form>
           <div className='w-72 md:w-80 h-0.5 bg-gray-400 m-auto my-8' />
           <div className='flex justify-center'>
-          <button className='h-12 w-64 rounded-lg bg-green-500 text-white text-lg'>
-            <Link href='/register'>REGISTER</Link>
+          <Link href='/register'>
+            <button className='h-12 w-64 rounded-lg bg-green-500 text-white text-lg'>
+              Register
             </button>
+            </Link>
           </div>
         </div>
       </div>
