@@ -76,12 +76,12 @@ export default function Login() {
             {wrongCredentials ? (
               <div className='text-red-500'>Wrong Credentials</div>
             ): null}
-            <button className='mt-4 h-12 rounded-lg bg-blue-500 text-white text-lg'>LOGIN</button>
+            <button className='mt-4 h-12 rounded-lg bg-blue-500 hover:bg-blue-600 hover:duration-100 text-white text-lg'>LOGIN</button>
           </form>
           <div className='w-72 md:w-80 h-0.5 bg-gray-400 m-auto my-8' />
           <div className='flex justify-center'>
           <Link href='/register'>
-            <button className='h-12 w-64 rounded-lg bg-green-500 text-white text-lg'>
+            <button className='h-12 w-64 rounded-lg bg-green-500 hover:bg-green-600 hover:duration-100 text-white text-lg'>
               Register
             </button>
             </Link>

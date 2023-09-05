@@ -65,7 +65,7 @@ export default function Register() {
               setPassword(e.target.value)
             }}
             className='mb-4 mt-3 p-4 h-12 rounded-lg border border-blue-500'/>
-            <button className='h-12 rounded-lg bg-blue-500 text-white text-lg'>REGISTER</button>
+            <button className='h-12 rounded-lg bg-blue-500 hover:bg-blue-600 hover:duration-100 text-white text-lg'>REGISTER</button>
           </form>
           
         </div>
