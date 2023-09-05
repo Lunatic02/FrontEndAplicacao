@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import SideBarMenu from '@/components/SideBarMenu';
 
   export default function Home() {
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState<any>([])
     
     useEffect(() => {
       async function fetchData() {
@@ -22,7 +22,6 @@ import SideBarMenu from '@/components/SideBarMenu';
       }
       fetchData();
     }, [])
-    console.log(user)
    
     return (
       <main>
