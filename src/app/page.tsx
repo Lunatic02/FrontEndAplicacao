@@ -1,18 +1,32 @@
   'use client'
-  import React, { useEffect } from 'react'
+import { getUserData } from '@/utils/getUserData';
+import React, { useEffect, useState } from 'react'
+import SideBarMenu from '@/components/SideBarMenu';
 
   export default function Home() {
+    const [user, setUser] = useState([])
+    
     useEffect(() => {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        window.location.href = '/login';
+      async function fetchData() {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          window.location.href = '/login';
+        } else {
+          try {
+            const user = await getUserData();
+            setUser(user)
+          } catch (error) {
+            console.error('Erro ao obter dados do usuário:', error);
+          }
+        }
       }
-    }, []);
+      fetchData();
+    }, [])
+    console.log(user)
+   
     return (
-      <button onClick={()=>{
-        localStorage.removeItem('token')
-        localStorage.removeItem('email')
-        window.location.href = '/login';
-      }}>Logout</button>
+      <main>
+        <SideBarMenu user={user}/>
+      </main>
     )
   }
