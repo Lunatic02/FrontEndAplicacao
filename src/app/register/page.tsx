@@ -10,6 +10,7 @@ export default function Page() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const [emailAlreadyInUse, setEmailAlreadyInUse] = useState(false)
 
   function Register(e: any){
     e.preventDefault()
@@ -26,7 +27,7 @@ export default function Page() {
           localStorage.setItem('barelyAuthenticated', 'barelyAuthenticated')
            window.location.href = '/';
         } else {
-            console.log(data)
+          setEmailAlreadyInUse(true)
         }
     })
     .catch(error => {
@@ -51,15 +52,19 @@ export default function Page() {
             placeholder="EMAIL"
             onChange={(e)=>{
               setEmail(e.target.value)
+              setEmailAlreadyInUse(false)
             }}
-            className='mb-3 p-4 w-80 md:w-96 h-12 rounded-lg border border-blue-500'/>
+            className='p-4 w-80 md:w-96 h-12 rounded-lg border border-blue-500'/>
+            {emailAlreadyInUse ? (
+              <div>Email Already in use</div>
+            ): null}
             <input type="password"
             placeholder="PASSWORD"
             minLength={6}
             onChange={(e)=>{
               setPassword(e.target.value)
             }}
-            className='mb-4 p-4 h-12 rounded-lg border border-blue-500'/>
+            className='mb-4 mt-3 p-4 h-12 rounded-lg border border-blue-500'/>
             <button className='h-12 rounded-lg bg-blue-500 text-white text-lg'>REGISTER</button>
           </form>
           
