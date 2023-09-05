@@ -1,8 +1,8 @@
 'use client'
+import LeftSideRegister from "@/components/LeftSideRegister"
 import { useState } from "react"
-import LeftSideRegister from "../components/LeftSideRegister"
 
-export default function Page() {
+export default function Register() {
 
  
   
@@ -25,7 +25,7 @@ export default function Page() {
     .then(data => {
         if (data.id) {
           localStorage.setItem('barelyAuthenticated', 'barelyAuthenticated')
-           window.location.href = '/';
+           window.location.href = '/login';
         } else {
           setEmailAlreadyInUse(true)
         }
