@@ -9,11 +9,12 @@ import SideBarMenu from '@/components/SideBarMenu';
     useEffect(() => {
       async function fetchData() {
         const token = localStorage.getItem('token');
+        const email = localStorage.getItem('email')
         if (!token) {
           window.location.href = '/login';
         } else {
           try {
-            const user = await getUserData();
+            const user = await getUserData({email, token});
             setUser(user)
           } catch (error) {
             console.error('Erro ao obter dados do usuário:', error);

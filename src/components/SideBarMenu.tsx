@@ -17,7 +17,8 @@ export default function SideBarMenu({user}: SideBarMenuParams) {
       window.location.href = '/login';
   }
   return (
-    <div><div className='h-screen w-60 bg-gray-100 p-3 flex flex-col'>
+    <div className='border'>
+      <div className='h-screen w-60 bg-gray-100 p-3 flex flex-col'>
     <div>
       <h1 className='bebas-font text-xl md:text-3xl'>PayGuardian</h1>
     </div>

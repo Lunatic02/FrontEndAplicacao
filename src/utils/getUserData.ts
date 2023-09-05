@@ -1,7 +1,5 @@
-const token = localStorage.getItem('token');
-const email = localStorage.getItem('email')
 
-export async function getUserData() {
+export async function getUserData({email, token}: any) {
   try {
     const response = await fetch(`http://localhost:3333/me/${email}`, {
       method: 'GET',
