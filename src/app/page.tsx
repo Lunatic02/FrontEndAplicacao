@@ -17,6 +17,7 @@ export default function Home() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [wrongCredentials, setWrongCredentials] = useState(false)
 
   function Login(e: any){
     e.preventDefault()
@@ -35,12 +36,12 @@ export default function Home() {
             localStorage.removeItem('barelyAuthenticated')
             window.location.href = '/home';
         } else {
-            alert('Falha no login. Verifique suas credenciais.');
+          setWrongCredentials(true)
         }
     })
     .catch(error => {
         console.error('Erro no login:', error);
-        alert('Ocorreu um erro no login.');
+        setWrongCredentials(true)
     });
   }
 
@@ -56,15 +57,21 @@ export default function Home() {
             <input type="email"
             placeholder='EMAIL'
             onChange={(e)=>{
-              setEmail(e.target.value)
+              setEmail(e.target.value.toLowerCase())
+              setWrongCredentials(false)
             }} className='mb-3 p-4 w-80 md:w-96 h-12 rounded-lg border border-blue-500'/>
             <input type="password"
+            minLength={6}
              onChange={(e)=>{
               setPassword(e.target.value)
+              setWrongCredentials(false)
             }} 
             placeholder='PASSWORD'
-            className='mb-4 p-4 h-12 rounded-lg border border-blue-500'/>
-            <button className='h-12 rounded-lg bg-blue-500 text-white text-lg'>LOGIN</button>
+            className=' p-4 h-12 rounded-lg border border-blue-500'/>
+            {wrongCredentials ? (
+              <div className='text-red-500'>Wrong Credentials</div>
+            ): null}
+            <button className='mt-4 h-12 rounded-lg bg-blue-500 text-white text-lg'>LOGIN</button>
           </form>
           <div className='w-72 md:w-80 h-0.5 bg-gray-400 m-auto my-8' />
           <div className='flex justify-center'>

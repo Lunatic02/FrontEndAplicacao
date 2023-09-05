@@ -51,7 +51,7 @@ export default function Page() {
             <input type="email"
             placeholder="EMAIL"
             onChange={(e)=>{
-              setEmail(e.target.value)
+              setEmail(e.target.value.toLowerCase())
               setEmailAlreadyInUse(false)
             }}
             className='p-4 w-80 md:w-96 h-12 rounded-lg border border-blue-500'/>
