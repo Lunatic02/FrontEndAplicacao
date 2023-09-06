@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { BiSolidReport, BiLogOut } from 'react-icons/bi'
-import {GiHamburgerMenu} from 'react-icons/gi'
+import {GiArrowCursor, GiHamburgerMenu} from 'react-icons/gi'
 import { BsHouseFill, BsCoin, BsFillCalculatorFill } from 'react-icons/bs'
 
 interface SideBarMenuParams {
@@ -24,9 +24,8 @@ export default function SideBarMenu({ user }: SideBarMenuParams) {
    return(
     <div>
     <div className='h-screen w-60 bg-gray-100 p-3 flex flex-col border'>
-    <button onClick={()=>setActive(!active)}><GiHamburgerMenu /></button>
-      <div>
-        <h1 className='bebas-font text-xl md:text-3xl'>PayGuardian</h1>
+      <div className='flex'>
+        <h1 className='bebas-font text-xl md:text-3xl flex-1'>PayGuardian</h1> <button onClick={()=>setActive(!active)}><GiArrowCursor /></button>
       </div>
       <div className='flex-1'>
         <span className='flex items-center hover:bg-blue-500 hover:text-white my-4 p-1 rounded-md '>
