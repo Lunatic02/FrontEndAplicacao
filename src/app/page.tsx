@@ -25,8 +25,16 @@ import SideBarMenu from '@/components/SideBarMenu';
     }, [])
    
     return (
-      <main>
+      <main className='flex'>
         <SideBarMenu user={user}/>
+        <main>
+          <div className='p-3'>
+            <h3 className='mr-3 font-black text-2xl'>
+              Finances Dashboard
+            </h3>
+            <p>Welcome back, {user.name}</p>
+          </div>
+        </main>
       </main>
     )
   }

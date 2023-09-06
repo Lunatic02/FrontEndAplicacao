@@ -1,8 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import {  Roboto } from 'next/font/google'
+import {  Poppins, Roboto } from 'next/font/google'
 
-const roboto = Roboto({ subsets: ['latin'] , weight: "400"})
+const roboto = Poppins({ subsets: ['latin'] , weight: "400"})
 
 export const metadata: Metadata = {
   title: 'PayGuardian - Finances Saver',
