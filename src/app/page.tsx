@@ -57,13 +57,13 @@ import DashboardPage from '@/components/DashboardPage';
     }, [])
     let content;
     if(transactionsLast24HoursActive && transactionsLastYear.length > 0){
-      content = <DashboardPage transactions={transactionsLast24Hours}/>
+      content = <DashboardPage date='Last 24 Hours' transactions={transactionsLast24Hours}/>
     }else if(transactionsLast30DaysActive && transactionsLastYear.length > 0){
-      content = <DashboardPage transactions={transactionsLast30Days}/>
+      content = <DashboardPage date='Last 30 Days' transactions={transactionsLast30Days}/>
     }else if(transactionsLast7DaysActive && transactionsLastYear.length > 0){
-      content = <DashboardPage transactions={transactionsLast7Days}/>
+      content = <DashboardPage date='Last 7 Days' transactions={transactionsLast7Days}/>
     } else if(transactionsLastYearActive && transactionsLastYear.length > 0){
-      content = <DashboardPage transactions={transactionsLastYear}/>
+      content = <DashboardPage date='Last Year' transactions={transactionsLastYear}/>
     } else{
       content = 'Você não possui Transactions adicione uma nova!'
     }
@@ -71,7 +71,7 @@ import DashboardPage from '@/components/DashboardPage';
     return (
       <main className='sm:flex'>
         <SideBarMenu user={user}/>
-        <main  className='p-3'>
+        <main  className='p-3 w-full'>
           <div>
             <h3 className='mr-3 font-black text-2xl'>
               Finances Dashboard
@@ -109,7 +109,7 @@ import DashboardPage from '@/components/DashboardPage';
                 setTransactionsLastYearActive(false)
               }}>24 hours</button>
               </div>
-              
+
           </nav>
           {content}
         </main>
