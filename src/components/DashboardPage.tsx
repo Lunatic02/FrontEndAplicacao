@@ -55,7 +55,7 @@ export default function DashboardPage({ transactions, date }: DashboardPageProps
               <MdOutlineAttachMoney className='text-green-500 m-6' size={40} />
             </span>
             <div className='px-6 text-blue-500'>
-              {date}
+              in the {date}
             </div>
             <h3 className='p-6 text-3xl'>$ {totalAmount}</h3>
           </div>
@@ -67,7 +67,7 @@ export default function DashboardPage({ transactions, date }: DashboardPageProps
               <MdOutlineAttachMoney className='text-green-500 m-6' size={40} />
             </span>
             <div className='px-6 text-blue-500'>
-              {date}
+            in the {date}
             </div>
             <h3 className='p-6 text-3xl'>$ {totalAmountIncome}</h3>
           </div>
@@ -79,7 +79,7 @@ export default function DashboardPage({ transactions, date }: DashboardPageProps
               <MdOutlineAttachMoney className='text-green-500 m-6' size={40} />
             </span>
             <div className='px-6 text-blue-500'>
-              {date}
+              in the {date}
             </div>
             <h3 className='p-6 text-3xl'>$ {totalAmountOutcome}</h3>
           </div>
