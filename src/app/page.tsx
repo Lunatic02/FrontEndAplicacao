@@ -18,7 +18,6 @@ import DashboardPage from '@/components/DashboardPage';
     const [transactionsLast30DaysActive, setTransactionsLast30DaysActive] = useState(false)
     const [transactionsLastYear, setTransactionsLastYear] = useState<Transaction[]>([]);
     const [transactionsLastYearActive, setTransactionsLastYearActive] = useState(true)
-
     
     useEffect(() => {
       const token = localStorage.getItem('token');
@@ -70,7 +69,7 @@ import DashboardPage from '@/components/DashboardPage';
     }
     
     return (
-      <main className='flex'>
+      <main className='sm:flex'>
         <SideBarMenu user={user}/>
         <main  className='p-3'>
           <div>
@@ -79,35 +78,38 @@ import DashboardPage from '@/components/DashboardPage';
             </h3>
             <p>Welcome back, {user.name}</p>
           </div>
-          <nav className='flex sm:mt-5'>
-              <button className={transactionsLastYearActive ? `bg-blue-500 text-white sm:p-2 border rounded-l-lg` : `sm:p-2 border rounded-l-lg` }
+          <nav className='flex flex-wrap sm:mt-5'>
+            <div>
+              <button className={transactionsLastYearActive ? `bg-blue-500 text-white p-1 sm:p-2 border rounded-l-lg cursor-auto` :`p-1 sm:p-2 border rounded-l-lg hover:bg-blue-500 hover:text-white`  }
               onClick={()=>{
                 setTransactionsLast24HoursActive(false)
                 setTransactionsLast7DaysActive(false)
                 setTransactionsLast30DaysActive(false)
                 setTransactionsLastYearActive(true)
               }}>12 months</button>
-              <button className={transactionsLast30DaysActive ? `bg-blue-500 text-white p-2 border ` : `p-2 border ` }
+              <button className={transactionsLast30DaysActive ? `bg-blue-500 text-white p-1 sm:p-2 border cursor-auto` : `p-1 sm:p-2 border hover:bg-blue-500 hover:text-white`  }
                onClick={()=>{
                 setTransactionsLast24HoursActive(false)
                 setTransactionsLast7DaysActive(false)
                 setTransactionsLast30DaysActive(true)
                 setTransactionsLastYearActive(false)
               }}>30 days</button>
-              <button className={transactionsLast7DaysActive ? `bg-blue-500 text-white p-2 border ` : `p-2 border ` }
+              <button className={transactionsLast7DaysActive ? `bg-blue-500 text-white p-1 sm:p-2 border cursor-auto` : `p-1 sm:p-2 border hover:bg-blue-500 hover:text-white` }
                onClick={()=>{
                 setTransactionsLast24HoursActive(false)
                 setTransactionsLast7DaysActive(true)
                 setTransactionsLast30DaysActive(false)
                 setTransactionsLastYearActive(false)
               }}>7 days</button>
-              <button className={transactionsLast24HoursActive ? `bg-blue-500 text-white p-2 border rounded-r-lg` : `p-2 border rounded-r-lg` }
+              <button className={transactionsLast24HoursActive ? `bg-blue-500 text-white p-1 sm:p-2 border rounded-r-lg cursor-auto` : `p-1 sm:p-2 border rounded-r-lg hover:bg-blue-500 hover:text-white` }
                onClick={()=>{
                 setTransactionsLast24HoursActive(true)
                 setTransactionsLast7DaysActive(false)
                 setTransactionsLast30DaysActive(false)
                 setTransactionsLastYearActive(false)
               }}>24 hours</button>
+              </div>
+              
           </nav>
           {content}
         </main>
