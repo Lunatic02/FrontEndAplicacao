@@ -5,6 +5,7 @@ import SideBarMenu from '@/components/SideBarMenu';
 import { getUserTransactions } from '@/utils/getUserTransactions';
 import { filterTransactionsByPeriod, last24Hours, last30Days, last7Days, lastYear, today } from '@/utils/filterTransactionsByPeriod';
 import { Transaction } from '@/@types/types';
+import TransactionsList from '@/components/TransactionsList';
 
 
   export default function Home() {
@@ -55,15 +56,15 @@ import { Transaction } from '@/@types/types';
       fetchData();
       fetchUserTransactions()
     }, [])
-    
+    let content;
     if(transactionsLast24HoursActive){
-      console.log('ultimo 24')
+      content = <TransactionsList transactions={transactionsLast24Hours}/>
     }else if(transactionsLast30DaysActive){
-      console.log('ultimo mes')
+      content = <TransactionsList transactions={transactionsLast30Days}/>
     }else if(transactionsLast7DaysActive){
-      console.log('ultimo 7')
+      content = <TransactionsList transactions={transactionsLast7Days}/>
     } else{
-     console.log('ultimo ano')
+      content = <TransactionsList transactions={transactionsLastYear}/>
     }
 
     return (
@@ -106,6 +107,7 @@ import { Transaction } from '@/@types/types';
                 setTransactionsLastYearActive(false)
               }}>24 hours</button>
           </nav>
+          {content}
         </main>
       </main>
     )
