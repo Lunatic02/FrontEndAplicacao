@@ -10,9 +10,14 @@ import { Transaction } from '@/@types/types';
   export default function Home() {
     const [user, setUser] = useState<any>([])
     const [transactionsLast24Hours, setTransactionsLast24Hours] = useState<Transaction[]>([]);
+    const [transactionsLast24HoursActive, setTransactionsLast24HoursActive] = useState(false)
     const [transactionsLast7Days, setTransactionsLast7Days] = useState<Transaction[]>([]);
+    const [transactionsLast7DaysActive, setTransactionsLast7DaysActive] = useState(false)
     const [transactionsLast30Days, setTransactionsLast30Days] = useState<Transaction[]>([]);
+    const [transactionsLast30DaysActive, setTransactionsLast30DaysActive] = useState(false)
     const [transactionsLastYear, setTransactionsLastYear] = useState<Transaction[]>([]);
+    const [transactionsLastYearActive, setTransactionsLastYearActive] = useState(false)
+
     
     useEffect(() => {
       const token = localStorage.getItem('token');
@@ -50,6 +55,16 @@ import { Transaction } from '@/@types/types';
       fetchData();
       fetchUserTransactions()
     }, [])
+    
+    if(transactionsLast24HoursActive){
+      console.log('ultimo 24')
+    }else if(transactionsLast30DaysActive){
+      console.log('ultimo mes')
+    }else if(transactionsLast7DaysActive){
+      console.log('ultimo 7')
+    } else{
+     console.log('ultimo ano')
+    }
 
     return (
       <main className='flex'>
@@ -61,9 +76,36 @@ import { Transaction } from '@/@types/types';
             </h3>
             <p>Welcome back, {user.name}</p>
           </div>
-          <div>
-
-          </div>
+          <nav className='flex sm:mt-5'>
+              <button className={transactionsLastYearActive ? `bg-blue-500 text-white sm:p-2 border rounded-l-lg` : `sm:p-2 border rounded-l-lg` }
+              onClick={()=>{
+                setTransactionsLast24HoursActive(false)
+                setTransactionsLast7DaysActive(false)
+                setTransactionsLast30DaysActive(false)
+                setTransactionsLastYearActive(true)
+              }}>12 months</button>
+              <button className={transactionsLast30DaysActive ? `bg-blue-500 text-white p-2 border ` : `p-2 border ` }
+               onClick={()=>{
+                setTransactionsLast24HoursActive(false)
+                setTransactionsLast7DaysActive(false)
+                setTransactionsLast30DaysActive(true)
+                setTransactionsLastYearActive(false)
+              }}>30 days</button>
+              <button className={transactionsLast7DaysActive ? `bg-blue-500 text-white p-2 border ` : `p-2 border ` }
+               onClick={()=>{
+                setTransactionsLast24HoursActive(false)
+                setTransactionsLast7DaysActive(true)
+                setTransactionsLast30DaysActive(false)
+                setTransactionsLastYearActive(false)
+              }}>7 days</button>
+              <button className={transactionsLast24HoursActive ? `bg-blue-500 text-white p-2 border rounded-r-lg` : `p-2 border rounded-r-lg` }
+               onClick={()=>{
+                setTransactionsLast24HoursActive(true)
+                setTransactionsLast7DaysActive(false)
+                setTransactionsLast30DaysActive(false)
+                setTransactionsLastYearActive(false)
+              }}>24 hours</button>
+          </nav>
         </main>
       </main>
     )
