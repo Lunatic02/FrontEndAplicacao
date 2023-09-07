@@ -5,7 +5,7 @@ import SideBarMenu from '@/components/SideBarMenu';
 import { getUserTransactions } from '@/utils/getUserTransactions';
 import { filterTransactionsByPeriod, last24Hours, last30Days, last7Days, lastYear, today } from '@/utils/filterTransactionsByPeriod';
 import { Transaction } from '@/@types/types';
-import TransactionsList from '@/components/TransactionsList';
+import DashboardPage from '@/components/DashboardPage';
 
 
   export default function Home() {
@@ -17,7 +17,7 @@ import TransactionsList from '@/components/TransactionsList';
     const [transactionsLast30Days, setTransactionsLast30Days] = useState<Transaction[]>([]);
     const [transactionsLast30DaysActive, setTransactionsLast30DaysActive] = useState(false)
     const [transactionsLastYear, setTransactionsLastYear] = useState<Transaction[]>([]);
-    const [transactionsLastYearActive, setTransactionsLastYearActive] = useState(false)
+    const [transactionsLastYearActive, setTransactionsLastYearActive] = useState(true)
 
     
     useEffect(() => {
@@ -57,16 +57,18 @@ import TransactionsList from '@/components/TransactionsList';
       fetchUserTransactions()
     }, [])
     let content;
-    if(transactionsLast24HoursActive){
-      content = <TransactionsList transactions={transactionsLast24Hours}/>
-    }else if(transactionsLast30DaysActive){
-      content = <TransactionsList transactions={transactionsLast30Days}/>
-    }else if(transactionsLast7DaysActive){
-      content = <TransactionsList transactions={transactionsLast7Days}/>
+    if(transactionsLast24HoursActive && transactionsLastYear.length > 0){
+      content = <DashboardPage transactions={transactionsLast24Hours}/>
+    }else if(transactionsLast30DaysActive && transactionsLastYear.length > 0){
+      content = <DashboardPage transactions={transactionsLast30Days}/>
+    }else if(transactionsLast7DaysActive && transactionsLastYear.length > 0){
+      content = <DashboardPage transactions={transactionsLast7Days}/>
+    } else if(transactionsLastYearActive && transactionsLastYear.length > 0){
+      content = <DashboardPage transactions={transactionsLastYear}/>
     } else{
-      content = <TransactionsList transactions={transactionsLastYear}/>
+      content = 'Você não possui Transactions adicione uma nova!'
     }
-
+    
     return (
       <main className='flex'>
         <SideBarMenu user={user}/>
