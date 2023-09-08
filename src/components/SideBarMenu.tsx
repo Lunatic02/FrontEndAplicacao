@@ -24,9 +24,9 @@ export default function SideBarMenu({ user }: SideBarMenuParams) {
   if (active) {
     return (
       <div>
-        <div className='absolute sm:relative h-screen w-60 bg-gray-100 p-3 flex flex-col border'>
+        <div className='absolute md:relative h-screen w-60 bg-gray-100 p-3 flex flex-col border'>
           <div className='flex'>
-            <h1 className='bebas-font text-xl md:text-3xl flex-1'>PayGuardian</h1> <button className='lg:hidden' onClick={() => setActive(!active)}><FaArrowAltCircleLeft size={20} /></button>
+            <h1 className='bebas-font text-xl md:text-3xl flex-1'>PayGuardian</h1> <button className='md:hidden' onClick={() => setActive(!active)}><FaArrowAltCircleLeft size={20} /></button>
           </div>
           <div className='flex-1'>
             <span className='flex items-center hover:bg-blue-500 hover:text-white my-4 p-1 rounded-md '>
@@ -56,8 +56,11 @@ export default function SideBarMenu({ user }: SideBarMenuParams) {
     )
   }
   return (
-    <div>
-      <button onClick={() => setActive(!active)}><GiHamburgerMenu size={20} /></button>
-    </div>
+    <nav className='bg-blue-500'>
+     <div className='flex flex-wrap justify-between p-3 text-white'>
+     <button onClick={() => setActive(!active)}><GiHamburgerMenu size={20} /></button>
+      <h1 className='bebas-font text-xl md:text-3xl'>PayGuardian</h1>
+     </div>
+    </nav>
   )
 }

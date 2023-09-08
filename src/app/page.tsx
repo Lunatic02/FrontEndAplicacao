@@ -69,7 +69,7 @@ import DashboardPage from '@/components/DashboardPage';
     }
     
     return (
-      <main className='sm:flex'>
+      <main className='md:flex'>
         <SideBarMenu user={user}/>
         <main  className='p-3 w-full'>
           <div>
