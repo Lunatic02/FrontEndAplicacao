@@ -8,3 +8,12 @@ export interface Transaction {
   type: string;
   userId: string;
 }
+
+export interface RegisterNewTransactionParams {
+  title: string,
+  amount: number,
+  description: string,
+  income: string,
+  category: string
+  e: any
+}
