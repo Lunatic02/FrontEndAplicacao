@@ -81,7 +81,7 @@ export default function DashboardPage({ transactions, date }: DashboardPageProps
             <div className='px-6 text-blue-500'>
               in the {date}
             </div>
-            <h3 className='p-6 text-3xl'>$ {totalAmountOutcome}</h3>
+            <h3 className='p-6 text-3xl'>$ -{totalAmountOutcome}</h3>
           </div>
         </div>
       </div>
