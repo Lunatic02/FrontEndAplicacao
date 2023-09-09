@@ -84,7 +84,6 @@ const RegisterNewTransaction = async (e : any) =>{
         console.error('Erro ao obter dados do usuário:', error);
       }
     }
-
     fetchData();
     fetchUserTransactions()
   }, [modalOn])
