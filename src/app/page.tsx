@@ -7,7 +7,6 @@ import { filterTransactionsByPeriod, last24Hours, last30Days, last7Days, lastYea
 import { Transaction } from '@/@types/types';
 import DashboardPage from '@/components/DashboardPage';
 import {AiFillCloseCircle} from 'react-icons/ai'
-import { RegisterNewTransaction } from '@/utils/RegisterNewTransaction';
 
 
 export default function Home() {
@@ -30,25 +29,27 @@ export default function Home() {
 
   const [modalOn, setModalOn] = useState(false)
 
-const RegisterNewTransaction = (e : any) =>{
+
+const RegisterNewTransaction = async (e : any) =>{
     const email = localStorage.getItem('email')
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');  
     e.preventDefault()
-    fetch(`http://localhost:3333/transaction/${email}`, {
+    const response = await fetch(`http://localhost:3333/transaction/${email}`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ title, amount, description,category, type }),
-    })
-    .then(response => response.json())
+      body: JSON.stringify({ title, amount, description, category, type }),
+    }).then(response => response.json())
     .then(data => {
-        
+        if (data) {
+          setModalOn(false)
+        } else {
+          alert('Error')
+        }
     })
-    .catch(error => {
-        console.error('Erro no login:', error);
-        alert('Ocorreu um erro no login.');
-    });
+    
   }
 
   useEffect(() => {
@@ -86,7 +87,7 @@ const RegisterNewTransaction = (e : any) =>{
 
     fetchData();
     fetchUserTransactions()
-  }, [transactionsLast24Hours])
+  }, [modalOn])
   let content;
   if (transactionsLast24HoursActive && transactionsLastYear.length > 0) {
     content = <DashboardPage date='Last 24 Hours' transactions={transactionsLast24Hours} />
@@ -100,12 +101,8 @@ const RegisterNewTransaction = (e : any) =>{
     content = 'Você não possui Transactions adicione uma nova!'
   }
 
-  const closeModal = () => {
-    setModalOn(false);
-  };
   let modalContent = null;
   if (modalOn) {
-    // Conteúdo do modal
     modalContent = (
       <div className="relative">
         <div className="absolute  left-1/2 transform -translate-x-1/2">
@@ -119,7 +116,7 @@ const RegisterNewTransaction = (e : any) =>{
             <form onSubmit={RegisterNewTransaction} className='flex flex-wrap flex-col gap-3'>
               <div className='flex flex-wrap gap-3'>
                 <input className='border rounded-lg  p-3' onChange={(e)=>setTitle(e.target.value)} type="text" placeholder='Title' required/>
-                <input type="number" onChange={(e)=>setAmount(e.target.value)} className='w-24 border rounded-lg  p-3' min="1" max="10000000" placeholder='Amount' required/>
+                <input type="number" onChange={(e)=>setAmount(Number(e.target.value))} className='w-24 border rounded-lg  p-3' min="1" max="10000000" placeholder='Amount' required/>
               </div>
               <div>
                 <textarea onChange={(e)=>setDescription(e.target.value)} className='border rounded-lg' className='w-full rounded-xl p-3' placeholder='Description' required />
