@@ -14,7 +14,6 @@ interface SideBarMenuParams {
 
 export default function SideBarMenu({ user }: SideBarMenuParams) {
   const [active, setActive] = useState(true)
-
   function Logout() {
     localStorage.removeItem('token')
     localStorage.removeItem('email')
@@ -24,7 +23,7 @@ export default function SideBarMenu({ user }: SideBarMenuParams) {
   if (active) {
     return (
       <div>
-        <div className='absolute md:relative h-screen w-60 bg-gray-100 p-3 flex flex-col border'>
+        <div className='absolute md:relative h-screen w-full sm:w-52  bg-gray-100 p-3 flex flex-col border'>
           <div className='flex'>
             <h1 className='bebas-font text-xl md:text-3xl flex-1'>PayGuardian</h1> <button className='md:hidden' onClick={() => setActive(!active)}><FaArrowAltCircleLeft size={20} /></button>
           </div>
