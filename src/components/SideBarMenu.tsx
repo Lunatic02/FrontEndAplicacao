@@ -1,5 +1,6 @@
+'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BiSolidReport, BiLogOut } from 'react-icons/bi'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { FaArrowAltCircleLeft } from 'react-icons/fa'
@@ -13,12 +14,28 @@ interface SideBarMenuParams {
 }
 
 export default function SideBarMenu({ user }: SideBarMenuParams) {
-  const [active, setActive] = useState(true)
   function Logout() {
     localStorage.removeItem('token')
     localStorage.removeItem('email')
     window.location.href = '/login';
   }
+  const [active, setActive] = useState(true)
+
+  const updateActiveState = () => {
+    if (window.innerWidth < 640) { 
+      setActive(false)
+    } else {
+      setActive(true)
+    }
+  }
+
+  useEffect(() => {
+    updateActiveState()
+    window.addEventListener('resize', updateActiveState)
+    return () => {
+      window.removeEventListener('resize', updateActiveState)
+    }
+  }, [])
 
   if (active) {
     return (
