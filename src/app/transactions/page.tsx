@@ -6,6 +6,8 @@ import { getUserTransactions } from "@/utils/getUserTransactions";
 import { useEffect, useState, lazy, Suspense } from "react";
 import Loading from "../loading";
 import TransactionsList from "@/components/TransactionsList";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Page() {
@@ -62,6 +64,10 @@ export default function Page() {
               <TransactionsList transactions={transactions} />
             )}
           </Suspense>
+
+        </div>
+        <div>
+        <ToastContainer autoClose={3000} position={toast.POSITION.BOTTOM_LEFT} />
         </div>
       </section>
     </main>

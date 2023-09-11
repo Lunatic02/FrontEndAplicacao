@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Transaction } from "@/@types/types";
-import { deleteItem } from "@/utils/deleteItem";
+import { deleteItem} from "@/utils/deleteItem";
 import { formatDate } from "@/utils/formatDate";
 import { FaTrash } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 export default function TransactionsList({ transactions }: any) {
   const token = localStorage.getItem('token');
@@ -48,7 +49,10 @@ export default function TransactionsList({ transactions }: any) {
                 <td className="py-3 px-6 text-left">
                   <span
                     className='hover:text-red-500 transition-all cursor-pointer'
-                    onClick={() => deleteItem({ email, token, id })}>
+                    onClick={() => {
+                      toast.success(`${transaction.title}, deleted!`);
+                      deleteItem({email, token, id})
+                    }}>
                     <FaTrash />
                   </span>
                 </td>
