@@ -42,7 +42,7 @@ export default function Page() {
 
     fetchData();
     fetchUserTransactions();
-  }, []);
+  }, [transactions]);
 
   return (
     <main className='md:flex'>
