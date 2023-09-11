@@ -72,8 +72,8 @@ export default function SideBarMenu({ user }: SideBarMenuParams) {
     )
   }
   return (
-    <nav className='bg-blue-500'>
-     <div className='flex flex-wrap justify-between p-3 text-white'>
+    <nav className='bg-gray-100'>
+     <div className='flex flex-wrap justify-between p-3 text-zinc-950'>
      <button onClick={() => setActive(!active)}><GiHamburgerMenu size={20} /></button>
       <h1 className='bebas-font text-xl md:text-3xl'>PayGuardian</h1>
      </div>

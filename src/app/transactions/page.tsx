@@ -4,9 +4,9 @@ import SideBarMenu from "@/components/SideBarMenu";
 import { getUserData } from "@/utils/getUserData";
 import { getUserTransactions } from "@/utils/getUserTransactions";
 import { useEffect, useState, lazy, Suspense } from "react";
+import Loading from "../loading";
+import TransactionsList from "@/components/TransactionsList";
 
-const TransactionsList = lazy(() => import("@/components/TransactionsList"));
-const Loading = lazy(() => import("./loading"));
 
 export default function Page() {
   const [user, setUser] = useState<any>([]);
@@ -34,7 +34,7 @@ export default function Page() {
       try {
         const transactions = await getUserTransactions({ email, token });
         setTransactions(transactions);
-        setIsLoading(false); // Indica que a busca está completa
+        setIsLoading(false);
       } catch (error) {
         console.error('Erro ao obter dados do usuário:', error);
       }
@@ -57,7 +57,7 @@ export default function Page() {
         <div>
           <Suspense fallback={<Loading />}>
             {isLoading ? (
-              <Loading /> // Exibir o componente de Loading enquanto carrega
+              <Loading />
             ) : (
               <TransactionsList transactions={transactions} />
             )}
