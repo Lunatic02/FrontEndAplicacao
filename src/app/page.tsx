@@ -27,6 +27,7 @@ export default function Home() {
   const [description, setDescription] = useState('')
   const [type, setType] = useState('income')
   const [category, setCategory] = useState('')
+  
 
   const [modalOn, setModalOn] = useState(false)
 
