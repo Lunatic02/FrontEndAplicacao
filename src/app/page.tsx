@@ -45,6 +45,7 @@ const RegisterNewTransaction = async (e : any) =>{
     .then(data => {
         if (data) {
           setModalOn(false)
+          window.location.href = '/transactions';
         } else {
           alert('Error')
         }

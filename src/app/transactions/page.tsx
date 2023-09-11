@@ -41,7 +41,7 @@ export default function Page() {
   return (
     <main className='md:flex'>
       <SideBarMenu user={user} />
-      <main className="p-3 w-full">
+      <section  className="p-3 w-full">
         <div>
           <h3 className='mr-3 font-black text-2xl'>
             Transactions
@@ -51,7 +51,7 @@ export default function Page() {
         <div>
           <TransactionsList transactions={transactions}/>
         </div>
-      </main>
+      </section>
     </main>
   )
 }
