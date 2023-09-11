@@ -100,7 +100,7 @@ export default function Home() {
   } else if (transactionsLastYearActive && transactionsLastYear.length > 0) {
     content = <DashboardPage date='Last Year' transactions={transactionsLastYear} />
   } else {
-    content = 'Você não possui Transactions adicione uma nova!'
+    content = 'You dont have any Transactions, add a new one!'
   }
 
   let modalContent = null;

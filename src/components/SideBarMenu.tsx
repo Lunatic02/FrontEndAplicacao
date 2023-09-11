@@ -51,12 +51,6 @@ export default function SideBarMenu({ user }: SideBarMenuParams) {
             <span className='flex items-center hover:bg-blue-500 hover:text-white my-4 p-1 rounded-md '>
               <i className='mr-3'><BiSolidReport size={24} /></i><Link href='/transactions' className='text-xl'>Transactions</Link>
             </span>
-            <span className='flex items-center hover:bg-blue-500 hover:text-white my-4 p-1 rounded-md '>
-              <i className='mr-3'><BsCoin size={24} /></i><Link href='/' className='text-xl'>Cryptos</Link>
-            </span>
-            <span className='flex items-center hover:bg-blue-500 hover:text-white my-4 p-1 rounded-md '>
-              <i className='mr-3'><BsFillCalculatorFill size={24} /></i><Link href='/' className='text-xl'>Calculators</Link>
-            </span>
           </div>
           <div>
             <div className='flex items-center border-t-2'>
