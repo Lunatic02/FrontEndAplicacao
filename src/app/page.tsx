@@ -6,12 +6,13 @@ import { getUserTransactions } from '@/utils/getUserTransactions';
 import { filterTransactionsByPeriod, last24Hours, last30Days, last7Days, lastYear, today } from '@/utils/filterTransactionsByPeriod';
 import { Transaction } from '@/@types/types';
 import DashboardPage from '@/components/DashboardPage';
-import {AiFillCloseCircle} from 'react-icons/ai'
+import { AiFillCloseCircle } from 'react-icons/ai'
+import { incomeCategories, outcomeCategories } from '@/utils/categories';
 
 
 export default function Home() {
   const [user, setUser] = useState<any>([])
-  
+
   const [transactionsLast24Hours, setTransactionsLast24Hours] = useState<Transaction[]>([]);
   const [transactionsLast24HoursActive, setTransactionsLast24HoursActive] = useState(false)
   const [transactionsLast7Days, setTransactionsLast7Days] = useState<Transaction[]>([]);
@@ -20,7 +21,7 @@ export default function Home() {
   const [transactionsLast30DaysActive, setTransactionsLast30DaysActive] = useState(false)
   const [transactionsLastYear, setTransactionsLastYear] = useState<Transaction[]>([]);
   const [transactionsLastYearActive, setTransactionsLastYearActive] = useState(true)
-  
+
   const [title, setTitle] = useState('')
   const [amount, setAmount] = useState(0)
   const [description, setDescription] = useState('')
@@ -30,9 +31,9 @@ export default function Home() {
   const [modalOn, setModalOn] = useState(false)
 
 
-const RegisterNewTransaction = async (e : any) =>{
+  const RegisterNewTransaction = async (e: any) => {
     const email = localStorage.getItem('email')
-    const token = localStorage.getItem('token');  
+    const token = localStorage.getItem('token');
     e.preventDefault()
     const response = await fetch(`http://localhost:3333/transaction/${email}`, {
       method: 'POST',
@@ -42,15 +43,15 @@ const RegisterNewTransaction = async (e : any) =>{
       },
       body: JSON.stringify({ title, amount, description, category, type }),
     }).then(response => response.json())
-    .then(data => {
+      .then(data => {
         if (data) {
           setModalOn(false)
           window.location.href = '/transactions';
         } else {
           alert('Error')
         }
-    })
-    
+      })
+
   }
 
   useEffect(() => {
@@ -109,25 +110,35 @@ const RegisterNewTransaction = async (e : any) =>{
           <div className='border rounded-lg bg-zinc-200 p-3'>
             <div className='flex justify-between py-3'>
               <h1 className='rounded-full text-lg text-zinc-900'>New Transaction</h1>
-              <button onClick={()=>{setModalOn(!modalOn)}}>
-                <AiFillCloseCircle className='text-zinc-900' size={30}/>
+              <button onClick={() => { setModalOn(!modalOn) }}>
+                <AiFillCloseCircle className='text-zinc-900' size={30} />
               </button>
             </div>
             <form onSubmit={RegisterNewTransaction} className='flex flex-wrap flex-col gap-3'>
               <div className='flex flex-wrap gap-3'>
-                <input className='border rounded-lg  p-3' onChange={(e)=>setTitle(e.target.value)} type="text" placeholder='Title' required/>
-                <input type="number" onChange={(e)=>setAmount(Number(e.target.value))} className='w-24 border rounded-lg  p-3' min="1" max="10000000" placeholder='Amount' required/>
+                <input className='border rounded-lg  p-3' onChange={(e) => setTitle(e.target.value)} type="text" placeholder='Title' required />
+                <input type="number" onChange={(e) => setAmount(Number(e.target.value))} className='w-24 border rounded-lg  p-3' min="1" max="10000000" placeholder='Amount' required />
               </div>
               <div>
-                <textarea onChange={(e)=>setDescription(e.target.value)} className='border rounded-lg' className='w-full rounded-xl p-3' placeholder='Description' required />
+                <textarea onChange={(e) => setDescription(e.target.value)} className='border rounded-lg' className='w-full rounded-xl p-3' placeholder='Description' required />
               </div>
               <div className='flex flexl flex-wrap gap-3  '>
                 <select className='border rounded-lg p-3 bg-zinc-900 text-white ' required>
-                  <option onClick={(e)=>setType('income')} value="income"></option>
-                  <option onClick={(e)=>setType('income')} value="income">income</option>
-                  <option onClick={(e)=>setType('outcome')} value="outcome">outcome</option>
+                  <option onClick={() => setType('income')} value="income">income</option>
+                  <option onClick={() => setType('outcome')} value="outcome">outcome</option>
                 </select>
-                <input type="text" onChange={(e)=>{setCategory(e.target.value)}} className='border rounded-lg p-3' placeholder='Category ' required/>
+                <select className='border rounded-lg flex-1 p-3 bg-zinc-900 text-white '>
+                  { type === 'income' ? incomeCategories.map((categoria, index) => (
+                    <option onClick={()=> setCategory(categoria)} key={index} value={categoria}>
+                      {categoria}
+                    </option>
+                  )) : outcomeCategories.map((categoria, index) => (
+                    <option onClick={()=> setCategory(categoria)} key={index} value={categoria}>
+                      {categoria}
+                    </option>
+                  ))
+                  }
+                </select>
               </div>
               <button className='p-3 text-white bg-zinc-900 rounded-lg'>Submit</button>
             </form>
