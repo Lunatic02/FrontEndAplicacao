@@ -66,7 +66,7 @@ export default function DashboardPage({ transactions, date }: DashboardPageProps
           <div>
             <span className='flex items-center'>
               <h4 className='text-xl p-6 mr-20'>Current Balance</h4>
-              <MdOutlineAttachMoney className='text-green-500 m-6' size={40} />
+              <MdOutlineAttachMoney className='text-yellow-500 m-6' size={40} />
             </span>
             <div className='px-6 text-blue-500'>
               in the {date}
@@ -78,7 +78,7 @@ export default function DashboardPage({ transactions, date }: DashboardPageProps
           <div>
             <span className='flex items-center'>
               <h4 className='text-xl p-6 mr-20'>Total Income</h4>
-              <BsFillArrowUpCircleFill className='text-yellow-500 m-6' size={40} />
+              <BsFillArrowUpCircleFill className='text-green-500 m-6' size={40} />
             </span>
             <div className='px-6 text-blue-500'>
             in the {date}
