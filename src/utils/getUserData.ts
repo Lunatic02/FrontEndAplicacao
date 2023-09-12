@@ -1,7 +1,7 @@
 
 export async function getUserData({email, token}: any) {
   try {
-    const response = await fetch(`http://localhost:3333/me/${email}`, {
+    const response = await fetch(`https://back-end-aplicacao-k3611chlj-lunatic02.vercel.app/me/${email}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`,

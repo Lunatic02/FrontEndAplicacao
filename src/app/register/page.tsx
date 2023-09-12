@@ -14,7 +14,7 @@ export default function Register() {
 
   function Register(e: any){
     e.preventDefault()
-    fetch('http://localhost:3333/register', {
+    fetch('https://back-end-aplicacao-k3611chlj-lunatic02.vercel.app/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

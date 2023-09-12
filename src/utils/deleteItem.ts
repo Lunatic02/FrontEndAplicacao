@@ -1,7 +1,7 @@
 
 export async function deleteItem({email, token, id}: any) {
   try {
-    const response = await fetch(`http://localhost:3333/transaction/${email}/${id}`, {
+    const response = await fetch(`https://back-end-aplicacao-k3611chlj-lunatic02.vercel.app/transaction/${email}/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,

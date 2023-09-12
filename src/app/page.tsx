@@ -36,7 +36,7 @@ export default function Home() {
     const email = localStorage.getItem('email')
     const token = localStorage.getItem('token');
     e.preventDefault()
-    const response = await fetch(`http://localhost:3333/transaction/${email}`, {
+    const response = await fetch(`https://back-end-aplicacao-k3611chlj-lunatic02.vercel.app/transaction/${email}`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,

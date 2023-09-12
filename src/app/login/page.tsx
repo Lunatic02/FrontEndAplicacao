@@ -26,7 +26,7 @@ export default function Login() {
 
   function Login(e: any){
     e.preventDefault()
-    fetch('http://localhost:3333/login', {
+    fetch('https://back-end-aplicacao-k3611chlj-lunatic02.vercel.app/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
