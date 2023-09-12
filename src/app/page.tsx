@@ -121,7 +121,7 @@ export default function Home() {
                 <input type="number" onChange={(e) => setAmount(Number(e.target.value))} className='w-24 border rounded-lg  p-3' min="1" max="10000000" placeholder='Amount' required />
               </div>
               <div>
-                <textarea onChange={(e) => setDescription(e.target.value)} className='border rounded-lg' className='w-full rounded-xl p-3' placeholder='Description' required />
+                <textarea onChange={(e) => setDescription(e.target.value)} className='border rounded-lg w-full p-3'  placeholder='Description' required />
               </div>
               <div className='flex flexl flex-wrap gap-3  '>
                 <select className='border rounded-lg p-3 bg-zinc-900 text-white ' required>
