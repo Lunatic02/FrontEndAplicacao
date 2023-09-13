@@ -125,16 +125,16 @@ export default function Home() {
               </div>
               <div className='flex flexl flex-wrap gap-3  '>
                 <select className='border rounded-lg p-3 bg-zinc-900 text-white ' required>
-                  <option onClick={() => setType('income')} value="income">income</option>
-                  <option onClick={() => setType('outcome')} value="outcome">outcome</option>
+                  <option onClick={() => setType('income')} onTouchStart={() => setType('income')} value="income">income</option>
+                  <option onClick={() => setType('outcome')} onTouchStart={() => setType('income')} value="outcome">outcome</option>
                 </select>
                 <select className='border rounded-lg flex-1 p-3 bg-zinc-900 text-white '>
                   { type === 'income' ? incomeCategories.map((categoria, index) => (
-                    <option onClick={()=> setCategory(categoria)} key={index} value={categoria}>
+                    <option onClick={()=> setCategory(categoria)} onTouchStart={()=> setCategory(categoria)} key={index} value={categoria}>
                       {categoria}
                     </option>
                   )) : outcomeCategories.map((categoria, index) => (
-                    <option onClick={()=> setCategory(categoria)} key={index} value={categoria}>
+                    <option onClick={()=> setCategory(categoria)} onTouchStart={()=> setCategory(categoria)} key={index} value={categoria}>
                       {categoria}
                     </option>
                   ))
